@@ -124,7 +124,7 @@ export const Home = () => {
           {selectedItem
             ? comments.map((comment) => (
                 <CommentCard
-                  title={comment.name}
+                  title={comment.email}
                   description={comment.body}
                   key={comment.id}
                 />
