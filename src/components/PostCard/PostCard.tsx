@@ -1,34 +1,32 @@
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { CardPropTypes } from "./PostCard.types";
-import { CardContainer } from "./PostCard.styles";
+import { PostCardPropTypes } from "./PostCard.types";
+import { PostContainer } from "./PostCard.styles";
+import { Avatar } from "@mui/material";
 
-
-export function PostCard(props: CardPropTypes) {
+export function PostCard(props: PostCardPropTypes) {
   const { title, description, selected, onClick, subTitle } = props;
 
   return (
-    <CardContainer
-      variant="outlined"
-      onClick={onClick}
-      selected={selected}
-    >
-      <CardContent 
-      >
-        <Typography color="primary" gutterBottom>
+    <PostContainer variant="outlined" onClick={onClick} selected={selected}>
+      <CardContent>
+      <Avatar alt={title} src={`https://avatar.iran.liara.run/public?${title}`} className="comment-img" />
+        <Typography color="primary.contrastText" gutterBottom>
           {title}
         </Typography>
-        <Typography sx={{
-          fontWeight: 'bold'
-        }} variant="caption" gutterBottom>
+        <Typography
+          sx={{
+            fontWeight: "bold",
+          }}
+          variant="caption"
+          gutterBottom
+        >
           {subTitle}
         </Typography>
-        <Typography
-          variant="subtitle2"
-        >
+        <Typography variant="subtitle2" className="description">
           {description}
         </Typography>
       </CardContent>
-    </CardContainer>
+    </PostContainer>
   );
 }

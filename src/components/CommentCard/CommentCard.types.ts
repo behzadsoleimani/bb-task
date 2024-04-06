@@ -1,9 +1,6 @@
-export interface PostCardPropTypes {
+export interface CommentCardPropTypes {
     title: string;
     description: string;
-    selected?: boolean;
-    onClick?: () => void;
-    subTitle: string;
 }
 
 export interface CardContainerProps {

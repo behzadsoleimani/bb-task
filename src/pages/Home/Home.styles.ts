@@ -1,11 +1,12 @@
 import { Paper, styled } from "@mui/material";
 
-export const Root = styled(Paper)(() => ({
+export const Root = styled(Paper)((props) => ({
+  backgroundColor: props.theme.palette.background.default,
   display: "flex",
   "& .container": {
     flexBasis: "50%",
     margin: 0,
-    padding: "12px",
+    padding: "20px",
     overflow: "auto",
     height: "100vh",
     "& ul": {
@@ -14,5 +15,5 @@ export const Root = styled(Paper)(() => ({
       flexDirection: "column",
     },
   },
-  
+
 }));

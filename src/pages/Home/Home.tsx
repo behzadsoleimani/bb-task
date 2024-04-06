@@ -6,6 +6,7 @@ import { fetchPosts } from "../../store/postsSlice";
 import { Root } from "./Home.styles";
 import { Post } from "../../utils/types";
 import { fetchComments } from "../../store/commentsSlice";
+import { CommentCard } from "../../components/CommentCard";
 
 export const Home = () => {
   const [selectedItem, setSelectedItem] = useState<Post>();
@@ -48,11 +49,10 @@ export const Home = () => {
         <ul>
           {selectedItem
             ? comments.map((comment) => (
-                <PostCard
+                <CommentCard
                   title={comment.name}
                   description={comment.body}
                   key={comment.id}
-                  subTitle={comment.email}
                 />
               ))
             : null}
