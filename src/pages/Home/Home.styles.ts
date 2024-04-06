@@ -1,19 +1,34 @@
-import { Paper, styled } from "@mui/material";
+import { Paper, styled } from '@mui/material';
 
-export const Root = styled(Paper)((props) => ({
-  backgroundColor: props.theme.palette.background.default,
-  display: "flex",
-  "& .container": {
-    flexBasis: "50%",
+export const Root = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  position: 'relative',
+  display: 'flex',
+  '& .container': {
+    flexBasis: '50%',
     margin: 0,
-    padding: "20px",
-    overflow: "auto",
-    height: "100vh",
-    "& ul": {
-      gap: "10px",
-      display: "flex",
-      flexDirection: "column",
+    padding: '20px',
+    overflow: 'auto',
+    height: '100vh',
+    '& .list': {
+      gap: '10px',
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    '& .pagination': {
+      justifyContent: 'center',
+      marginTop: '5px',
+      display: 'flex',
+      position: 'sticky',
+      bottom: '-10px',
+      background: theme.palette.secondary.main,
+      borderRadius: '10px',
+    },
+    '& .loading': {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100%',
     },
   },
-
 }));
