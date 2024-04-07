@@ -1,45 +1,45 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { getAllPosts } from "../api/endPoints";
-import { Post } from "../utils/types";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { getAllPosts } from '../api/endPoints';
+import { Post } from '../utils/types';
 
 interface PostsState {
   posts: Post[];
-  loadingStatus: "loading" | "success" | "failed";
+  loadingStatus: 'loading' | 'success' | 'failed';
 }
 
 const initialState: PostsState = {
   posts: [],
-  loadingStatus: "loading",
+  loadingStatus: 'loading',
 };
 
 export const fetchPosts = createAsyncThunk(
-  "posts/fetchPosts",
+  'posts/fetchPosts',
   async (_, { rejectWithValue }) => {
     try {
       return getAllPosts();
     } catch {
-      return rejectWithValue("An unknown error occurred");
+      return rejectWithValue('An unknown error occurred');
     }
   }
 );
 export const postsSlice = createSlice({
-  name: "posts",
+  name: 'posts',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchPosts.pending, (state) => {
-      state.loadingStatus = "loading";
+      state.loadingStatus = 'loading';
     });
     builder.addCase(
       fetchPosts.fulfilled,
       (state, action: PayloadAction<Post[]>) => {
-        state.loadingStatus = "success";
+        state.loadingStatus = 'success';
         state.posts = action.payload;
       }
     );
     builder.addCase(fetchPosts.rejected, (state) => {
-      state.loadingStatus = "failed";
+      state.loadingStatus = 'failed';
       state.posts = [];
     });
   },

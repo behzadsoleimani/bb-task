@@ -1,13 +1,14 @@
-import { CircularProgress, Container, Pagination } from "@mui/material";
-import { PostCard } from "../../components/PostCard";
-import { useAppDispatch, useAppSelector } from "../../store";
-import { useEffect, useState } from "react";
-import { fetchPosts } from "../../store/postsSlice";
-import { Root } from "./Home.styles";
-import { Post } from "../../utils/types";
-import { fetchComments } from "../../store/commentsSlice";
-import { CommentCard } from "../../components/CommentCard";
-import { Search } from "../../components/Search";
+import { CircularProgress, Container, Pagination } from '@mui/material';
+import { PostCard } from '../../components/PostCard';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { useEffect, useState } from 'react';
+import { fetchPosts } from '../../store/postsSlice';
+import { Filter, Root } from './Home.styles';
+import { Post } from '../../utils/types';
+import { fetchComments } from '../../store/commentsSlice';
+import { CommentCard } from '../../components/CommentCard';
+import { Search } from '../../components/Search';
+import { getFilteredPosts } from './Home.helpers';
 
 const PAGE_SIZE = 10;
 
@@ -17,7 +18,7 @@ export const Home = () => {
   const { posts, loadingStatus: postLoadingStatus } = useAppSelector(
     (state) => state.posts
   );
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
   const { users } = useAppSelector((state) => state.users);
   const { comments } = useAppSelector((state) => state.comments);
@@ -44,31 +45,7 @@ export const Home = () => {
     setSearchValue(value.toLowerCase());
   };
 
-  const filteredItems = searchValue
-    ? posts.filter(({ title, body, userId }) => {
-        const username = users[userId];
-
-        const isTitleFound = title.toLowerCase().includes(searchValue);
-        if (isTitleFound) {
-          return true;
-        }
-
-        const isAuthorFound = username.toLowerCase().includes(searchValue);
-        if (isAuthorFound) {
-          return true;
-        }
-
-        const isDescFound = body.toLowerCase().includes(searchValue);
-        if (isDescFound) {
-          return true;
-        }
-
-        return false;
-      })
-    : posts;
-
-  console.log("filteredItems");
-  console.log(filteredItems);
+  const filteredItems = getFilteredPosts(searchValue, posts, users);
 
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const paginatedPosts = filteredItems.slice(
@@ -80,17 +57,11 @@ export const Home = () => {
   return (
     <Root elevation={0}>
       <Container className="container posts-section">
-        {postLoadingStatus === "success" ? (
+        {postLoadingStatus === 'success' ? (
           <>
-            <div
-              style={{
-                position: "sticky",
-                top: 0,
-                zIndex: 10,
-              }}
-            >
+            <Filter>
               <Search onChange={handleFilterPosts} />
-            </div>
+            </Filter>
             <ul className="list">
               {paginatedPosts.map((post) => (
                 <PostCard

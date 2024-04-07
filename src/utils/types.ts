@@ -3,7 +3,7 @@ export type Post = {
   id: number;
   title: string;
   body: string;
-}
+};
 
 export type User = {
   id: number;
@@ -27,7 +27,7 @@ export type User = {
     catchPhrase: string;
     bs: string;
   };
-}
+};
 
 export type Comment = {
   postId: number;
@@ -36,4 +36,3 @@ export type Comment = {
   email: string;
   body: string;
 };
-

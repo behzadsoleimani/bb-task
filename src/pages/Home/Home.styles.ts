@@ -32,3 +32,9 @@ export const Root = styled(Paper)(({ theme }) => ({
     },
   },
 }));
+
+export const Filter = styled('div')(() => ({
+  position: 'sticky',
+  top: 0,
+  zIndex: 10,
+}));

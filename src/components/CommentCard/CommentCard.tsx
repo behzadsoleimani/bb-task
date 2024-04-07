@@ -1,7 +1,12 @@
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CommentCardPropTypes, ModalContent } from './CommentCard.types';
-import { Actions, CommentContainer, ReplyContainer } from './CommentCard.styles';
+import {
+  Actions,
+  CommentContainer,
+  ReplyContainer,
+  Tags,
+} from './CommentCard.styles';
 import { Avatar, Chip, Divider } from '@mui/material';
 import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
 import SellOutlinedIcon from '@mui/icons-material/SellOutlined';
@@ -47,16 +52,11 @@ export function CommentCard(props: CommentCardPropTypes) {
           <Typography variant="subtitle2" className="description">
             {description}
           </Typography>
-          <div
-            style={{
-              display: 'flex',
-              gap: '2px',
-              flexWrap: 'wrap',
-            }}>
+          <Tags>
             {tags.map((tag, index) => (
               <Chip variant="filled" key={index} size="small" label={tag} />
             ))}
-          </div>
+          </Tags>
         </CardContent>
         {isDialogOpen === ModalContent.TAGS && (
           <CommentTags onClose={handleClose} setTags={setTags} tags={tags} />
@@ -70,16 +70,20 @@ export function CommentCard(props: CommentCardPropTypes) {
         )}
       </CommentContainer>
       {replies.map((reply, index) => (
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '2px'
-        }}>
-        <Divider orientation='vertical' sx={{height: '15px' , backgroundColor: 'gray' , width: '1px'}}/>
-        <ReplyContainer variant="outlined" key={index}>
-          <CardContent className="reply-content">
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '2px',
+          }}>
+          <Divider
+            orientation="vertical"
+            sx={{ height: '15px', backgroundColor: 'gray', width: '1px' }}
+          />
+          <ReplyContainer variant="outlined" key={index}>
+            <CardContent className="reply-content">
               <Avatar
                 alt={reply}
                 src={`https://avatar.iran.liara.run/public?${reply}`}
@@ -88,8 +92,8 @@ export function CommentCard(props: CommentCardPropTypes) {
               <Typography variant="subtitle2" color="white">
                 : {reply}
               </Typography>
-          </CardContent>
-        </ReplyContainer>
+            </CardContent>
+          </ReplyContainer>
         </div>
       ))}
     </>
