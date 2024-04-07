@@ -1,15 +1,7 @@
 import { CommentRepliesModalProps } from './CommentCard.types';
-import {
-  DialogContent,
-  Dialog,
-  DialogTitle,
-  TextField,
-  DialogActions,
-  Button,
-} from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import { TextField, Button } from '@mui/material';
 import { useState } from 'react';
+import { Modal } from '../Modal';
 
 export function CommentReplies(props: CommentRepliesModalProps) {
   const { onClose, confirm, title } = props;
@@ -21,32 +13,11 @@ export function CommentReplies(props: CommentRepliesModalProps) {
   };
 
   return (
-    <Dialog open onClose={onClose} fullWidth>
-      <DialogTitle sx={{ m: 0, p: 2 }}>Add Reply to {title}</DialogTitle>
-      <IconButton
-        aria-label="close"
-        onClick={onClose}
-        sx={{
-          position: 'absolute',
-          right: 8,
-          top: 8,
-        }}>
-        <CloseIcon />
-      </IconButton>
-      <DialogContent>
-        <TextField
-          multiline
-          rows={5}
-          fullWidth
-          sx={{
-            p: '5px',
-          }}
-          variant="filled"
-          value={textValue}
-          onChange={(e) => setTextValue(e.target.value)}
-        />
-      </DialogContent>
-      <DialogActions>
+    <Modal
+      open
+      onClose={onClose}
+      title={`Add Reply to ${title}`}
+      actions={
         <Button
           onClick={handleConfirm}
           disabled={!textValue}
@@ -54,7 +25,18 @@ export function CommentReplies(props: CommentRepliesModalProps) {
           color="secondary">
           Reply
         </Button>
-      </DialogActions>
-    </Dialog>
+      }>
+      <TextField
+        multiline
+        rows={5}
+        fullWidth
+        sx={{
+          p: '5px',
+        }}
+        variant="filled"
+        value={textValue}
+        onChange={(e) => setTextValue(e.target.value)}
+      />
+    </Modal>
   );
 }

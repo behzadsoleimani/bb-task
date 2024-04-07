@@ -1,30 +1,55 @@
-# React + TypeScript + Vite
+## React Blog App Template
+This template equips you with a minimal yet powerful starting point for your React projects using Vite, TypeScript, Hot Module Replacement (HMR), and ESLint. It's designed to get you up and running with a solid development environment, enabling you to focus on building your application.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Installation
+Before diving into development, you'll need to install the project dependencies. You can do this by running one of the following commands in your terminal, depending on your package manager of choice:
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### Using Yarn
+```
+yarn
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Using npm
+
+```
+npm install
+```
+
+## Running the Project
+To start the development server and work on your project with live feedback, execute the following command:
+
+```
+yarn dev
+```
+This will launch the development server, allowing you to view your changes in real-time.
+
+## Building for Production
+When your project is ready to be deployed, you can create a production build by running:
+
+```
+yarn build
+```
+After the build process completes, you can preview your production build locally by serving the build directory:
+
+```
+npx serve build
+```
+
+## Testing
+Ensure your application functions correctly by running your test suite with:
+
+```
+yarn test
+```
+This command will run all tests associated with the project and report the outcomes.
+
+## Live Preview
+Get a feel for the application and explore its features by visiting the live demo:
+
+ [Live Demo URL](https://bb-blog-task.netlify.app/)
+
+This live preview serves as an example of what you can build and provides inspiration for your projects.
+
+## Report
+ [Report](https://productive-coreopsis-22f.notion.site/Report-aa9e30e2b15b4f8dbc52a121a9c812b4)
+
