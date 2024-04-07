@@ -58,16 +58,6 @@ export function CommentCard(props: CommentCardPropTypes) {
             ))}
           </Tags>
         </CardContent>
-        {isDialogOpen === ModalContent.TAGS && (
-          <CommentTags onClose={handleClose} setTags={setTags} tags={tags} />
-        )}
-        {isDialogOpen === ModalContent.REPLY && (
-          <CommentReplies
-            onClose={handleClose}
-            title={title}
-            confirm={(value) => setReplies((prev) => [...prev, value])}
-          />
-        )}
       </CommentContainer>
       {replies.map((reply, index) => (
         <div
@@ -96,6 +86,16 @@ export function CommentCard(props: CommentCardPropTypes) {
           </ReplyContainer>
         </div>
       ))}
+      {isDialogOpen === ModalContent.TAGS && (
+        <CommentTags onClose={handleClose} setTags={setTags} tags={tags} />
+      )}
+      {isDialogOpen === ModalContent.REPLY && (
+        <CommentReplies
+          onClose={handleClose}
+          title={title}
+          confirm={(value) => setReplies((prev) => [...prev, value])}
+        />
+      )}
     </>
   );
 }
